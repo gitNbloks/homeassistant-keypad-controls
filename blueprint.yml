@@ -1,0 +1,140 @@
+blueprint:
+  name: Keypad webhook blueprint
+  description: Blueprint for selecting actions based on oncoming webhooks received from a keypad
+  domain: automation
+  input:
+    keypad_0_0:
+      name: keypad NUMLK
+      description: Select the action to perform for webhook a=0, b=0.
+      selector:
+        action: {}
+      default: []
+    keypad_0_1:
+      name: keypad /
+      description: Select the action to perform for webhook a=0, b=1.
+      selector:
+        action: {}
+      default: []
+    keypad_0_2:
+      name: keypad *
+      description: Select the action to perform for webhook a=0, b=2.
+      selector:
+        action: {}
+      default: []
+    keypad_0_3:
+      name: keypad -
+      description: Select the action to perform for webhook a=0, b=3.
+      selector:
+        action: {}
+      default: []
+    keypad_1_0:
+      name: keypad 7
+      description: Select the action to perform for webhook a=1, b=0.
+      selector:
+        action: {}
+      default: []
+    keypad_1_1:
+      name: keypad 8
+      description: Select the action to perform for webhook a=1, b=1.
+      selector:
+        action: {}
+      default: []
+    keypad_1_2:
+      name: keypad 9
+      description: Select the action to perform for webhook a=1, b=2.
+      selector:
+        action: {}
+      default: []
+    keypad_1_3:
+      name: keypad +
+      description: Select the action to perform for webhook a=1, b=3.
+      selector:
+        action: {}
+      default: []
+    keypad_2_0:
+      name: keypad 4
+      description: Select the action to perform for webhook a=2, b=0.
+      selector:
+        action: {}
+      default: []
+    keypad_2_1:
+      name: keypad 5
+      description: Select the action to perform for webhook a=2, b=1.
+      selector:
+        action: {}
+      default: []
+    keypad_2_2:
+      name: keypad 6
+      description: Select the action to perform for webhook a=2, b=2.
+      selector:
+        action: {}
+      default: []
+    keypad_2_3:
+      name: keypad +
+      description: Select the action to perform for webhook a=2, b=3.
+      selector:
+        action: {}
+      default: []
+    keypad_3_0:
+      name: keypad 1
+      description: Select the action to perform for webhook a=3, b=0.
+      selector:
+        action: {}
+      default: []
+    keypad_3_1:
+      name: keypad 2
+      description: Select the action to perform for webhook a=3, b=1.
+      selector:
+        action: {}
+      default: []
+    keypad_3_2:
+      name: keypad 3
+      description: Select the action to perform for webhook a=3, b=1.
+      selector:
+        action: {}
+      default: []
+    keypad_3_3:
+      name: keypad RETURN
+      description: Select the action to perform for webhook a=3, b=0.
+      selector:
+        action: {}
+      default: []
+
+    keypad_4_0:
+      name: keypad 0 INS
+      description: Select the action to perform for webhook a=3, b=1.
+      selector:
+        action: {}
+      default: []
+    keypad_4_1:
+      name: keypad 0 INS
+      description: Select the action to perform for webhook a=3, b=1.
+      selector:
+        action: {}
+      default: []
+    keypad_4_2:
+      name: keypad DEL
+      description: Select the action to perform for webhook a=3, b=1.
+      selector:
+        action: {}
+      default: []
+    keypad_4_3:
+      name: keypad RETURN
+      description: Select the action to perform for webhook a=3, b=1.
+      selector:
+        action: {}
+      default: []
+trigger:
+  platform: webhook
+  webhook_id: keypad_b
+action:
+  - choose: >
+      {% for a in range(4) %}
+        {% for b in range(4) %}
+        - conditions:
+            - condition: template
+              value_template: "{{ trigger.json.a == {{a}} and trigger.json.b == {{b}} }}"
+          sequence: !input keypad_{{a}}_{{b}}
+        {% endfor %}
+      {% endfor %}
+    default: []
