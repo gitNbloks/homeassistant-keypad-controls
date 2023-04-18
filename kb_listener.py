@@ -6,7 +6,8 @@ EV_KEY = 0x01
 EV_SYN = 0x00
 
 # Open the input device file
-input_file = open('/dev/input/by-id/usb-MOSART_Semi._2.4G_Keyboard_Mouse-event-kbd', 'rb')
+# usb-MOSART_Semi._2.4G_Keyboard_Mouse-event-kbd
+input_file = open('/dev/input/by-id/{{YOUR DEVICE ID}}', 'rb')
 
 #keycodeToGrid
 matrix = {
@@ -41,11 +42,9 @@ def call_api(gridCode):
     c.setopt(pycurl.HTTPHEADER, ['Accept: application/json','Content-Type: application/json'])
     c.setopt(c.POSTFIELDS, '{ "key": "value" }')
     c.setopt(c.URL, 'http://homeassistant.local:8123/api/webhook/keypad_'+gridCode)
-    print('perform: homeassistant.local:8123/api/webhook/keypad_'+gridCode)
+    # print('perform: homeassistant.local:8123/api/webhook/keypad_'+gridCode)
     c.perform()
-    print('perform: homeassistant.local:8123/api/webhook/keypad_'+gridCode)
     status_code = c.getinfo(pycurl.RESPONSE_CODE)
-    print(status_code)
     c.close()
 
     return
@@ -60,8 +59,7 @@ while True:
 
     # Print the event data if it is a key event
     if event_type == EV_KEY:
-        print(f'Keycode: {event_code}, Value: {event_value}')
-        print('++++')
+        #print(f'Keycode: {event_code}, Value: {event_value}')
         if event_code in matrix:
             call_api(matrix[event_code])
     # If it is a SYN event, print a newline character to separate events
