@@ -5,6 +5,13 @@ Add automations based on webhooks received by a wireless numpad.
 
 Using a keypad connected to a raspberry pi.
 We add a service Daemon that runs `kb_listener.py` on startup.
+
+replace 
+```
+input_file = open('/dev/input/by-id/usb-MOSART_Semi._2.4G_Keyboard_Mouse-event-kbd', 'rb')
+``` 
+with your keyboard.
+
 In my example i am using Debian.
 https://wiki.debian.org/systemd/Services
 
