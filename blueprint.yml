@@ -125,16 +125,108 @@ blueprint:
         action: {}
       default: []
 trigger:
-  platform: webhook
-  webhook_id: keypad_b
+  - platform: webhook
+    webhook_id: keypad
 action:
-  - choose: >
-      {% for a in range(4) %}
-        {% for b in range(4) %}
-        - conditions:
-            - condition: template
-              value_template: "{{ trigger.json.a == {{a}} and trigger.json.b == {{b}} }}"
-          sequence: !input keypad_{{a}}_{{b}}
-        {% endfor %}
-      {% endfor %}
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '0_0' }}
+        sequence: !input keypad_0_0
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '0_1' }}
+        sequence: !input keypad_0_1
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '0_2' }}
+        sequence: !input keypad_0_2
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '0_3' }}
+        sequence: !input keypad_0_3
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '1_0' }}
+        sequence: !input keypad_1_0
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '1_1' }}
+        sequence: !input keypad_1_1
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '1_2' }}
+        sequence: !input keypad_1_2
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '1_3' }}
+        sequence: !input keypad_1_3
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '2_0' }}
+        sequence: !input keypad_2_0
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '2_1' }}
+        sequence: !input keypad_2_1
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '2_2' }}
+        sequence: !input keypad_2_2
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '2_3' }}
+        sequence: !input keypad_2_3
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '3_0' }}
+        sequence: !input keypad_3_0
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '3_1' }}
+        sequence: !input keypad_3_1
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '3_2' }}
+        sequence: !input keypad_3_2
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '3_3' }}
+        sequence: !input keypad_3_3
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '4_0' }}
+        sequence: !input keypad_4_0
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '4_1' }}
+        sequence: !input keypad_4_1
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '4_2' }}
+        sequence: !input keypad_4_2
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ trigger.query.keyCode == '4_3' }}
+        sequence: !input keypad_4_3
     default: []
