@@ -2,7 +2,6 @@
 Add automations based on webhooks received by a wireless numpad.
 
 # Keypad
-![image](https://user-images.githubusercontent.com/97018465/232828435-4ae38317-638c-4f79-87c3-7267d68e7572.png)
 
 Using a keypad connected to a raspberry pi.
 We add a service Daemon that runs `kb_listener.py` on startup.
