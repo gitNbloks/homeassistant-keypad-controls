@@ -8,7 +8,7 @@ We add a service Daemon that runs `kb_listener.py` on startup.
 In my example i am using Debian.
 https://wiki.debian.org/systemd/Services
 
-`
+```
 [Unit]
 Description=Keyboard handler script
 
@@ -20,7 +20,7 @@ Restart=always
 
 [Install]
 WantedBy=multi.user.target
-`
+```
 
 This script starts the kb_listener when the raspberry starts.
 
