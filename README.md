@@ -28,3 +28,4 @@ This script starts the kb_listener when the raspberry starts.
 ![image](https://user-images.githubusercontent.com/97018465/232829782-e88a9167-c59f-4a07-b673-0e6db9d362d2.png)
 
 Allows you to select an action for every keypad input.
+The webhooks it receives are keypad_0_0 through keypad_4_3 where the integers are x,y on keys as a grid.
